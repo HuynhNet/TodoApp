@@ -28,20 +28,20 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="txtUsername">Họ tên</label>
-                                        <input type="text" class="form-control" name="userNameInputed" id="userNameInputed" aria-describedby="helpId"
+                                        <input type="text" class="form-control" name="" id="" aria-describedby="helpId"
                                                placeholder="Nguyễn văn A" required>
                                         <div class="invalid-feedback">Vui lòng nhập họ tên</div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Mật khẩu</label>
-                                        <input type="password" class="form-control" name="passwordInputed" id="passwordInputed" required>
+                                        <input type="password" class="form-control" name="" id="" required>
                                         <div class="invalid-feedback">Vui lòng nhập mật khẩu.</div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Giới tính</label>
-                                        <select class="form-control" name="genderInputed" id="genderInputed" required>
+                                        <select class="form-control" name="" id="" required>
                                             <option value="" disabled selected>-- Chọn giới tính --</option>
                                             <option>Nam</option>
                                             <option>Nữ</option>
@@ -53,24 +53,23 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="">Email</label>
-                                        <input type="text" class="form-control" name="emailInputed" id="emailInputed"
+                                        <input type="text" class="form-control" name="" id=""
                                                aria-describedby="helpId" placeholder="nguyena@gmail.com"
-                                               required onblur="isEmail()">
+                                               required>
                                         <div class="invalid-feedback">Vui lòng nhập email.</div>
-                                        <small id="emailInputed" class="form-text text-muted">{{ $errors->first('emailInputed') }}</small>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Điện thoại</label>
-                                        <input type="text" class="form-control" name="phoneNumberInputed" id="phoneNumberInputed"
+                                        <input type="text" class="form-control" name="" id=""
                                                aria-describedby="helpId" placeholder="0859134539" required
-                                               onblur="isPhoneNumber()">
+                                              >
                                         <div class="invalid-feedback">Vui lòng nhập số điện thoại.</div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="">Ngày sinh</label>
-                                        <input type="date" class="form-control" name="birthdayInputed" id="birthdayInputed" required>
+                                        <input type="date" class="form-control" name="" id="" required>
                                         <div class="invalid-feedback">Vui lòng nhập ngày sinh.</div>
                                     </div>
 
@@ -94,7 +93,4 @@
 
 @section('link-js')
     <script src="{{ asset('public/js/webpage/validate-form.js') }}"></script>
-    <script src="{{ asset('public/js/webpage/validate-phone-number.js') }}"></script>
-    <script src="{{ asset('public/js/webpage/dang-ky.js') }}"></script>
-    <script src="{{ asset('public/js/webpage/validate-email.js') }}"></script>
 @endsection

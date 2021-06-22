@@ -17,19 +17,9 @@ class TrangChuController extends Controller {
         return view('webpage.dangky');
     }
 
-    public function postDangKy(Request $request)
+    public function postDangKy()
     {
-        $this->validate($request,
-            [
-                'emailInputed' => 'unique:users,email',
-                'phoneNumberInputed' => 'unique:users,phone'
-            ],
-            [
-                'emailInputed.unique' => 'Email đã tồn tại!',
-                'phoneNumberInputed.unique' => 'Số điện thoại đã tồn tại'
-            ]
-        );
-        return redirect()->back();
+        return "sgdfghsd";
     }
 
 }

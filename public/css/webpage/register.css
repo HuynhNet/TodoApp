@@ -1,0 +1,22 @@
+body{
+    background-image: url("../../images/webpage/ITLB_B_BG-2.png");
+    background-size: cover;
+    height: 100%;
+}
+
+.card{
+    border: 1px solid green;
+}
+
+.card-header{
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Times New Roman";
+    border-bottom: 1px solid green;
+}
+
+.card-body label{
+    font-family: "Times New Roman";
+    font-weight: 500;
+}

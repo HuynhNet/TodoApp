@@ -1,0 +1,41 @@
+body {
+    background-color: #ecebeb
+}
+
+.card-header{
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.form-group input {
+    width: 70%;
+}
+
+.btn-login {
+    width: 100%;
+}
+
+.text-fogot-pass {
+    color: black;
+}
+
+.text-fogot-pass:hover {
+    text-decoration: none;
+    color: blue;
+}
+
+.text-regiser {
+    float: right;
+}
+
+.text-regiser .btn-register{
+    text-decoration: none;
+    color: red;
+}
+
+.text-regiser .btn-register:hover{
+    text-decoration: none;
+    color: blue;
+    font-weight: 500;
+}

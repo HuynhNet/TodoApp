@@ -43,8 +43,8 @@
                                         <label for="">Giới tính</label>
                                         <select class="form-control" name="genderInputed" id="genderInputed" required>
                                             <option value="" disabled selected>-- Chọn giới tính --</option>
-                                            <option>Nam</option>
-                                            <option>Nữ</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
                                         </select>
                                         <div class="invalid-feedback">Vui lòng chọn giới tính.</div>
                                     </div>
@@ -97,4 +97,16 @@
     <script src="{{ asset('public/js/webpage/validate-phone-number.js') }}"></script>
     <script src="{{ asset('public/js/webpage/dang-ky.js') }}"></script>
     <script src="{{ asset('public/js/webpage/validate-email.js') }}"></script>
+
+    @if(Session::has('add_user_success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: {{ session()->get('add_user_success') }},
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
 @endsection

@@ -5,6 +5,7 @@ use App\Models\Quyen;
 use App\Models\TrangThai;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class TrangChuController extends Controller {
 
@@ -53,8 +54,8 @@ class TrangChuController extends Controller {
 
         $userModel->add($user);
 
-        session()->flash('add_user_success', 'Đăng ký tài khoản thành công');
-        return redirect()->back();
+        Session::put('add_user_success', 'Đăng ký tài khoản thành công');
+        return redirect()->back()->with('add_user_success');
     }
 
 }

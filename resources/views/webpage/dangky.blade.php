@@ -90,6 +90,20 @@
             </div>
         </div>
     </div>
+
+    @if(Session::has('add_user_success'))
+        <script>
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: {{ \Illuminate\Support\Facades\Session::get('add_user_success') }},
+                showConfirmButton: false,
+                timer: 1500
+            })
+        </script>
+    @endif
+
+
 @endsection
 
 @section('link-js')
@@ -97,16 +111,4 @@
     <script src="{{ asset('public/js/webpage/validate-phone-number.js') }}"></script>
     <script src="{{ asset('public/js/webpage/dang-ky.js') }}"></script>
     <script src="{{ asset('public/js/webpage/validate-email.js') }}"></script>
-
-    @if(Session::has('add_user_success'))
-        <script>
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: {{ session()->get('add_user_success') }},
-                showConfirmButton: false,
-                timer: 1500
-            })
-        </script>
-    @endif
 @endsection

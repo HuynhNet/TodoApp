@@ -55,7 +55,7 @@ class TrangChuController extends Controller {
         $userModel->add($user);
 
         Session::put('add_user_success', 'Đăng ký tài khoản thành công');
-        return redirect()->back()->with('add_user_success');
+        return redirect()->route('getLogin')->with('add_user_success');
     }
 
 }

@@ -10,7 +10,14 @@ class Quyen extends Model
 {
     use HasFactory;
 
-    public function getIdByName($roleName) {
+    protected $fillable = [
+        'ten_quyen'
+    ];
+
+    public static $USER_ROLE = 'user';
+    public static $ADMIN_ROLE = 'Admin';
+
+    public static function getIdByName($roleName) {
         return DB::table('quyens')->where('ten_quyen', '=', $roleName)->first();
     }
 }

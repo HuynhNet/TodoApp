@@ -12,9 +12,14 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'name',
-        'email',
+        'ma_quyen',
+        'ma_trang_thai',
+        'username',
         'password',
+        'phone',
+        'email',
+        'birthday',
+        'gender'
     ];
 
     protected $hidden = [
@@ -26,7 +31,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function add(User $user) {
+    public static function add(User $user) {
         $user->save();
     }
 }

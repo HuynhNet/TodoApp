@@ -5,6 +5,7 @@ use App\Models\Quyen;
 use App\Models\TrangThai;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class TrangChuController extends Controller {
@@ -34,14 +35,10 @@ class TrangChuController extends Controller {
             ]
         );
 
-        $userModel = new User();
         $user = new User();
 
-        $quyenModel = new Quyen();
-        $roleId = $quyenModel->getIdByName('user');
-
-        $trangThaiModel = new TrangThai();
-        $statusId = $trangThaiModel->getIdByName('normal');
+        $roleId = Quyen::getIdByName(Quyen::$USER_ROLE);
+        $statusId = TrangThai::getIdByName(TrangThai::$NORMAL);
 
         $user->ma_quyen = $roleId->id;
         $user->ma_trang_thai = $statusId->id;
@@ -52,10 +49,38 @@ class TrangChuController extends Controller {
         $user->birthday = $request->input('birthdayInputed');
         $user->gender = $request->input('genderInputed');
 
-        $userModel->add($user);
+        User::add($user);
 
-        session()->flash('add_user_success', 'Đăng ký tài khoản thành công');
-        return redirect()->route('getLogin')->with('add_user_success');
+        $add_user_success = Session::get('add_user_success');
+        Session::put('add_user_success');
+
+        session()->put('addUserSuccess', 'Đăng ký tài khoản thành công');
+        return redirect()->route('getLogin');
+    }
+
+    public function postLogin(Request $request) {
+        $email = $request->input('email-login');
+        $password = $request->input('password-login');
+
+        if($this->isAdminUserAuthenticated($email, $password)) {
+        } elseif ($this->isNormalUserAuthenticated($email, $password)) {
+            return redirect()->route('getHome');
+        } else {
+            session()->put('loginFail', 'Email hoặc mật khẩu của bạn không đúng!');
+            return redirect()->back();
+        }
+    }
+
+    private function isAuthenticated($email, $password, $roleId) {
+        return Auth::attempt(['email' => $email, 'password' => $password, 'ma_quyen' => $roleId]);
+    }
+
+    private function isNormalUserAuthenticated($email, $password) {
+        return $this->isAuthenticated($email, $password, Quyen::$USER_ROLE);
+    }
+
+    private function isAdminUserAuthenticated($email, $password) {
+        return $this->isAuthenticated($email, $password, Quyen::$ADMIN_ROLE);
     }
 
 }

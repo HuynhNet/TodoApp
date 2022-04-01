@@ -22,7 +22,7 @@
                         Đăng ký tài khoản
                     </div>
                     <div class="card-body">
-                        <form action="{{route('postDangKy')}}" method="POST" class="needs-validation" novalidate>
+                        <form action="{{ route('postDangKy') }}" method="POST" class="needs-validation" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -57,7 +57,7 @@
                                                aria-describedby="helpId" placeholder="nguyena@gmail.com"
                                                required onblur="isEmail()">
                                         <div class="invalid-feedback">Vui lòng nhập email.</div>
-                                        <small id="emailInputed" class="form-text text-muted">{{ $errors->first('emailInputed') }}</small>
+                                        <small class="form-text text-muted">{{ $errors->first('emailInputed') }}</small>
                                     </div>
 
                                     <div class="form-group">
@@ -66,6 +66,7 @@
                                                aria-describedby="helpId" placeholder="0859134539" required
                                                onblur="isPhoneNumber()">
                                         <div class="invalid-feedback">Vui lòng nhập số điện thoại.</div>
+                                        <small class="form-text text-muted">{{ $errors->first('phoneNumberInputed') }}</small>
                                     </div>
 
                                     <div class="form-group">
@@ -84,12 +85,12 @@
                                 </div>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    @include('notification.sweetalert')
 @endsection
 
 @section('link-js')

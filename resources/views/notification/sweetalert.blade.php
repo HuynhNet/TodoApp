@@ -1,12 +1,31 @@
 
-@if(session()->has('add_user_success'))
+@if(session()->has('addUserSuccess'))
     <script>
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: {{ session()->get('add_user_success') }},
+            title: "{{ session()->get('addUserSuccess') }}",
             showConfirmButton: false,
             timer: 1500
         })
     </script>
+    @php
+        session()->forget('loginFail');
+    @endphp
 @endif
+
+@if(session()->has('loginFail'))
+    <script>
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: "{{ session()->get('loginFail') }}",
+            showConfirmButton: false,
+            timer: 1500
+        })
+    </script>
+    @php
+        session()->forget('loginFail');
+    @endphp
+@endif
+

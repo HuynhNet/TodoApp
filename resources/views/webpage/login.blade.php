@@ -20,20 +20,24 @@
                         Đăng nhập
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <form action="{{ route('postLogin') }}" method="post" class="needs-validation" novalidate>
+                            @csrf
+
                             <div class="form-group">
                                 <label for="">Email</label>
-                                <input type="text" class="form-control" name="" id="" placeholder="mail@gmail.com">
+                                <input type="text" class="form-control" name="email-login" id="emailLogin" placeholder="mail@gmail.com" required>
+                                <div class="invalid-feedback">Vui lòng nhập email</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="">Mật khẩu</label>
-                                <input type="password" class="form-control" name="" id="" placeholder="">
+                                <input type="password" class="form-control" name="password-login" id="passwordLogin" placeholder="" required>
+                                <div class="invalid-feedback">Vui lòng nhập mật khẩu</div>
                             </div>
 
                             <hr>
 
-                            <a href="" class="btn btn-success btn-login">Đăng nhập</a>
+                            <button type="submit" class="btn btn-success btn-login">Đăng nhập</button>
                         </form>
                     </div>
                 </div>
@@ -49,4 +53,8 @@
     </div>
 
     @include('notification.sweetalert')
+@endsection
+
+@section('link-js')
+    <script src="{{ asset('public/js/webpage/validate-form.js') }}"></script>
 @endsection

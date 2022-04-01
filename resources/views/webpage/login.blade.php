@@ -47,4 +47,6 @@
             </div>
         </div>
     </div>
+
+    @include('notification.sweetalert')
 @endsection

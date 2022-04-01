@@ -43,8 +43,8 @@
                                         <label for="">Giới tính</label>
                                         <select class="form-control" name="genderInputed" id="genderInputed" required>
                                             <option value="" disabled selected>-- Chọn giới tính --</option>
-                                            <option>Nam</option>
-                                            <option>Nữ</option>
+                                            <option value="Nam">Nam</option>
+                                            <option value="Nữ">Nữ</option>
                                         </select>
                                         <div class="invalid-feedback">Vui lòng chọn giới tính.</div>
                                     </div>

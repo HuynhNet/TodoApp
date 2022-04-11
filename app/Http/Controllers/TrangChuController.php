@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Enums\SessionConstants;
+use App\Enums\SessionMessage;
 use App\Models\Quyen;
 use App\Models\TrangThai;
 use App\Models\User;
@@ -48,13 +50,10 @@ class TrangChuController extends Controller {
         $user->email = $request->input('emailInputed');
         $user->birthday = $request->input('birthdayInputed');
         $user->gender = $request->input('genderInputed');
-
         User::add($user);
 
-        $add_user_success = Session::get('add_user_success');
-        Session::put('add_user_success');
+        session()->put(SessionConstants::registerSuccess, SessionMessage::registerSuccessMessage);
 
-        session()->put('addUserSuccess', 'Đăng ký tài khoản thành công');
         return redirect()->route('getLogin');
     }
 
@@ -63,10 +62,11 @@ class TrangChuController extends Controller {
         $password = $request->input('password-login');
 
         if($this->isAdminUserAuthenticated($email, $password)) {
+            return "";
         } elseif ($this->isNormalUserAuthenticated($email, $password)) {
             return redirect()->route('getHome');
         } else {
-            session()->put('loginFail', 'Email hoặc mật khẩu của bạn không đúng!');
+            session()->put(SessionConstants::loginFail, SessionMessage::loginFailMessage);
             return redirect()->back();
         }
     }

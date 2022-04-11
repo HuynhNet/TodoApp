@@ -90,7 +90,8 @@
             </div>
         </div>
     </div>
-    @include('notification.sweetalert')
+
+    <x-notification.top-right-alert sessionName="registerSuccess" />
 @endsection
 
 @section('link-js')

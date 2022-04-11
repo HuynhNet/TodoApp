@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    @include('notification.sweetalert')
+    <x-notification.top-right-alert sessionName="loginFail" />
 @endsection
 
 @section('link-js')

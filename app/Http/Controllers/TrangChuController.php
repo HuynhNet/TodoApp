@@ -32,8 +32,8 @@ class TrangChuController extends Controller {
                 'phoneNumberInputed' => 'unique:users,phone'
             ],
             [
-                'emailInputed.unique' => 'Email đã tồn tại!',
-                'phoneNumberInputed.unique' => 'Số điện thoại đã tồn tại'
+                'emailInputed.unique' => trans('validation.unique', ['attribute' => 'email']),
+                'phoneNumberInputed.unique' => trans('validation.unique', ['attribute' => 'phone number'])
             ]
         );
 
@@ -52,7 +52,7 @@ class TrangChuController extends Controller {
         $user->gender = $request->input('genderInputed');
         User::add($user);
 
-        session()->put(SessionConstants::registerSuccess, SessionMessage::registerSuccessMessage);
+        session()->put(SessionConstants::registerSuccess, trans('session.'.SessionMessage::registerSuccessMessage));
 
         return redirect()->route('getLogin');
     }
@@ -66,7 +66,7 @@ class TrangChuController extends Controller {
         } elseif ($this->isNormalUserAuthenticated($email, $password)) {
             return redirect()->route('getHome');
         } else {
-            session()->put(SessionConstants::loginFail, SessionMessage::loginFailMessage);
+            session()->put(SessionConstants::loginFail, trans('session.'.SessionMessage::loginFailMessage));
             return redirect()->back();
         }
     }

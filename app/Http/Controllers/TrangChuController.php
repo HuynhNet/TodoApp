@@ -1,11 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Enums\RouterConstants;
+use App\Enums\SessionConstants;
+use App\Enums\SessionMessage;
 use App\Models\Quyen;
 use App\Models\TrangThai;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
 class TrangChuController extends Controller {
@@ -30,8 +34,8 @@ class TrangChuController extends Controller {
                 'phoneNumberInputed' => 'unique:users,phone'
             ],
             [
-                'emailInputed.unique' => 'Email đã tồn tại!',
-                'phoneNumberInputed.unique' => 'Số điện thoại đã tồn tại'
+                'emailInputed.unique' => trans('validation.unique', ['attribute' => 'email']),
+                'phoneNumberInputed.unique' => trans('validation.unique', ['attribute' => 'phone number'])
             ]
         );
 
@@ -48,14 +52,11 @@ class TrangChuController extends Controller {
         $user->email = $request->input('emailInputed');
         $user->birthday = $request->input('birthdayInputed');
         $user->gender = $request->input('genderInputed');
-
         User::add($user);
 
-        $add_user_success = Session::get('add_user_success');
-        Session::put('add_user_success');
+        session()->put(SessionConstants::registerSuccess, trans('session.'.SessionMessage::registerSuccessMessage));
 
-        session()->put('addUserSuccess', 'Đăng ký tài khoản thành công');
-        return redirect()->route('getLogin');
+        return redirect()->route(RouterConstants::getLogin);
     }
 
     public function postLogin(Request $request) {
@@ -63,12 +64,41 @@ class TrangChuController extends Controller {
         $password = $request->input('password-login');
 
         if($this->isAdminUserAuthenticated($email, $password)) {
+            return "";
         } elseif ($this->isNormalUserAuthenticated($email, $password)) {
-            return redirect()->route('getHome');
+            return redirect()->route(RouterConstants::getHome);
         } else {
-            session()->put('loginFail', 'Email hoặc mật khẩu của bạn không đúng!');
+            session()->put(SessionConstants::loginFail, trans('session.'.SessionMessage::loginFailMessage));
             return redirect()->back();
         }
+    }
+
+    public function renderForgotPasswordPage() {
+        return view('webpage.forgot-password');
+    }
+
+    public function changePassword(Request $request) {
+        $hasRegisteredEmail = $request->input('hasRegisteredEmail');
+        $isEmailExisted = User::isEmailExisted($hasRegisteredEmail);
+        if($isEmailExisted) {
+            $newPassword = $request->input('newPassword');
+            $confirmNewPassword = $request->input('confirmNewPassword');
+
+            if($this->isCorrectPassword($newPassword, $confirmNewPassword)) {
+                User::updatePassword($isEmailExisted, $newPassword);
+                session()->put(SessionConstants::changePasswordSuccess, trans('session'.SessionConstants::changePasswordSuccess));
+                return redirect()->route(RouterConstants::getLogin);
+            }
+
+            session()->put(SessionConstants::confirmPasswordFail, trans('session.'.SessionConstants::confirmPasswordFail));
+            return redirect()->back();
+        }
+        session()->put(SessionConstants::notExistedEmail, trans('session.'.SessionConstants::notExistedEmail));
+        return redirect()->back();
+    }
+
+    private function isCorrectPassword($newPassword, $newConfirmPassword) {
+        return $newPassword == $newConfirmPassword;
     }
 
     private function isAuthenticated($email, $password, $roleId) {

@@ -14,13 +14,13 @@
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-3"></div>
-            <div class="col-xs-12 colsw-12 col-md-6">
+            <div class="col-xs-12 col-sw-12 col-md-6">
                 <div class="card">
                     <div class="card-header text-center">
                         Đăng nhập
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('postLogin') }}" method="post" class="needs-validation" novalidate>
+                        <form action="{{ route(\App\Enums\RouterConstants::postLogin) }}" method="post" class="needs-validation" novalidate>
                             @csrf
 
                             <div class="form-group">
@@ -34,7 +34,6 @@
                                 <input type="password" class="form-control" name="password-login" id="passwordLogin" placeholder="" required>
                                 <div class="invalid-feedback">Vui lòng nhập mật khẩu</div>
                             </div>
-
                             <hr>
 
                             <button type="submit" class="btn btn-success btn-login">Đăng nhập</button>
@@ -43,16 +42,15 @@
                 </div>
                 <br>
 
-                <a href="" class="text-fogot-pass"><strong>Quên mật khẩu?</strong></a>
-
+                <a href="{{ route(\App\Enums\RouterConstants::renderForgotPasswordPage) }}" class="text-fogot-pass"><strong>Quên mật khẩu?</strong></a>
                 <span class="text-regiser">
-                <a href="" class="btn-register">Đăng ký</a> nếu không có tài khoản
+                <a href="{{ route(\App\Enums\RouterConstants::getRegister) }}" class="btn-register">Đăng ký</a> nếu không có tài khoản
             </span>
             </div>
         </div>
     </div>
 
-    @include('notification.sweetalert')
+    <x-notification.top-right-alert sessionName="loginFail" />
 @endsection
 
 @section('link-js')

@@ -22,7 +22,7 @@
                         Đăng ký tài khoản
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('postDangKy') }}" method="POST" class="needs-validation" novalidate>
+                        <form action="{{ route(\App\Enums\RouterConstants::postDangKy) }}" method="POST" class="needs-validation" novalidate>
                             @csrf
                             <div class="row">
                                 <div class="col-md-6">
@@ -90,7 +90,8 @@
             </div>
         </div>
     </div>
-    @include('notification.sweetalert')
+
+    <x-notification.top-right-alert sessionName="registerSuccess" />
 @endsection
 
 @section('link-js')

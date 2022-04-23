@@ -8,4 +8,7 @@ final class SessionConstants extends Enum
 {
     const loginFail = 'loginFail';
     const registerSuccess = 'registerSuccess';
+    const confirmPasswordFail = 'confirmPasswordFail';
+    const notExistedEmail = 'notExistedEmail';
+    const changePasswordSuccess = 'changePasswordSuccess';
 }

@@ -85,8 +85,8 @@ class TrangChuController extends Controller {
             $confirmNewPassword = $request->input('confirmNewPassword');
 
             if($this->isCorrectPassword($newPassword, $confirmNewPassword)) {
-                User::updatePassword($isEmailExisted, $newPassword);
-                session()->put(SessionConstants::changePasswordSuccess, trans('session'.SessionConstants::changePasswordSuccess));
+                User::updatePassword($hasRegisteredEmail, $newPassword);
+                session()->put(SessionConstants::changePasswordSuccess, trans('session.'.SessionConstants::changePasswordSuccess));
                 return redirect()->route(RouterConstants::getLogin);
             }
 
@@ -101,16 +101,15 @@ class TrangChuController extends Controller {
         return $newPassword == $newConfirmPassword;
     }
 
-    private function isAuthenticated($email, $password, $roleId) {
-        return Auth::attempt(['email' => $email, 'password' => $password, 'ma_quyen' => $roleId]);
-    }
-
     private function isNormalUserAuthenticated($email, $password) {
-        return $this->isAuthenticated($email, $password, Quyen::$USER_ROLE);
+        return $this->isAuthenticated($email, $password, Quyen::getIdByName(Quyen::$USER_ROLE)->id);
     }
 
     private function isAdminUserAuthenticated($email, $password) {
-        return $this->isAuthenticated($email, $password, Quyen::$ADMIN_ROLE);
+        return $this->isAuthenticated($email, $password, Quyen::getIdByName(Quyen::$ADMIN_ROLE)->id);
     }
 
+    private function isAuthenticated($email, $password, $roleId) {
+        return Auth::attempt(['email' => $email, 'password' => $password, 'ma_quyen' => $roleId]);
+    }
 }

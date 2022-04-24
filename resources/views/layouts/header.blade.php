@@ -16,13 +16,16 @@
             </li>
         </ul>
 
-        <a href="{{ route(\App\Enums\RouterConstants::getLogin) }}" class="btn btn-primary">
-            <i class="fa fa-user" aria-hidden="true"></i> Đăng nhập
-        </a>
+        @if(\Illuminate\Support\Facades\Auth::check())
+            {{ \Illuminate\Support\Facades\Auth::user()->username }}
+        @else
+            <a href="{{ route(\App\Enums\RouterConstants::getLogin) }}" class="btn btn-primary">
+                <i class="fa fa-user" aria-hidden="true"></i> Đăng nhập
+            </a>
 
-        <a href="{{ route(\App\Enums\RouterConstants::getRegister) }}" class="btn btn-info ml-2">
-            <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Đăng ký
-        </a>
-
+            <a href="{{ route(\App\Enums\RouterConstants::getRegister) }}" class="btn btn-info ml-2">
+                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> Đăng ký
+            </a>
+        @endif
     </div>
 </nav>

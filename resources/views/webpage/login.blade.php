@@ -51,6 +51,7 @@
     </div>
 
     <x-notification.top-right-alert sessionName="loginFail" />
+    <x-notification.top-right-alert sessionName="changePasswordSuccess" />
 @endsection
 
 @section('link-js')

@@ -14,7 +14,7 @@ use function Symfony\Component\Translation\t;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    const TABLE_NAME = 'user';
+    const TABLE_NAME = 'users';
 
     protected $table = 'users';
     protected $fillable = [

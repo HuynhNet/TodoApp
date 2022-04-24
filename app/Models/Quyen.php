@@ -18,6 +18,6 @@ class Quyen extends Model
     public static $ADMIN_ROLE = 'Admin';
 
     public static function getIdByName($roleName) {
-        return DB::table('quyens')->where('ten_quyen', '=', $roleName)->first();
+        return DB::table('quyens')->where('ten_quyen', $roleName)->first();
     }
 }

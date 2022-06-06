@@ -1,12 +1,12 @@
 @extends('layouts.master')
 
-@section('page-title', 'Trang chủ')
+@section(\App\Enums\ComponentNameConstants::pageTitle, 'Trang chủ')
 
-@section('header')
+@section(\App\Enums\ComponentNameConstants::header)
     @include('layouts.header')
 @endsection
 
-@section('content')
+@section(\App\Enums\ComponentNameConstants::content)
     <div class="container">
 
         <div class="row mt-4">

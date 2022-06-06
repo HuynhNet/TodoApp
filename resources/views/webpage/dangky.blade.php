@@ -1,18 +1,18 @@
 @extends('layouts.master')
 
-@section('page-title', 'Đăng ký')
+@section(\App\Enums\ComponentNameConstants::pageTitle, 'Đăng ký')
 
-@section('link-css')
+@section(\App\Enums\ComponentNameConstants::linkCss)
     <link rel="stylesheet" href="{{ asset('public/css/webpage/register.css') }}">
 @endsection
 
-@section('header')
+@section(\App\Enums\ComponentNameConstants::header)
     @include('layouts.header')
 @endsection
 
 <br><br>
 
-@section('content')
+@section(\App\Enums\ComponentNameConstants::content)
     <div class="container">
         <div class="row">
             <div class="col-md-2"></div>

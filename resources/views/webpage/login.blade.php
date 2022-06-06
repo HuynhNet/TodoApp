@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
-@section('page-title', 'Đăng nhập')
+@section(\App\Enums\ComponentNameConstants::pageTitle, 'Đăng nhập')
 
-@section('link-css')
+@section(\App\Enums\ComponentNameConstants::linkCss)
     <link rel="stylesheet" href="{{ asset('public/css/webpage/login.css') }}">
 @endsection
 
-@section('header')
+@section(\App\Enums\ComponentNameConstants::header)
     @include('layouts.header')
 @endsection
 
-@section('content')
+@section(\App\Enums\ComponentNameConstants::content)
     <div class="container">
         <div class="row mt-5">
             <div class="col-md-3"></div>

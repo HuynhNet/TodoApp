@@ -12,9 +12,10 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Create todo</a>
+                <a class="nav-link" href="{{ route(\App\Enums\RouterConstants::addTodoWork) }}">Create todo</a>
             </li>
         </ul>
+
 
         @if(\Illuminate\Support\Facades\Auth::check())
             {{ \Illuminate\Support\Facades\Auth::user()->username }}

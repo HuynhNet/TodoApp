@@ -63,6 +63,12 @@ class TrangChuController extends Controller {
         $email = $request->input('email-login');
         $password = $request->input('password-login');
 
+
+        if(Auth::attempt(['email' => $email, 'mat_khau' => $password, 'ma_quyen' => 1])){
+            return redirect()->route('getHome');
+        }
+
+
         if($this->isAdminUserAuthenticated($email, $password)) {
             return "";
         } elseif ($this->isNormalUserAuthenticated($email, $password)) {
@@ -97,9 +103,18 @@ class TrangChuController extends Controller {
         return redirect()->back();
     }
 
+    public function addTodoWork() {
+        return view('webpage.create-todo');
+    }
+
+    public function postAddTodoWork(Request $request) {
+
+    }
+
     private function isCorrectPassword($newPassword, $newConfirmPassword) {
         return $newPassword == $newConfirmPassword;
     }
+
 
     private function isNormalUserAuthenticated($email, $password) {
         return $this->isAuthenticated($email, $password, Quyen::getIdByName(Quyen::$USER_ROLE)->id);

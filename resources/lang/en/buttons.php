@@ -1,4 +1,5 @@
 <?php
 return [
-    'cancelBtn' => 'Cancel'
+    'cancelBtn' => 'Cancel',
+    'saveBtn' => 'Save'
 ];
